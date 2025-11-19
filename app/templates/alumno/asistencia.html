@@ -1,23 +1,6 @@
 {% extends "base.html" %}
 {% block title %}Mi asistencia{% endblock %}
 {% block content %}
-<section class="card filter-card">
-  <form method="get" action="{{ request.url.path }}" class="quarter-selector">
-    <label for="cuatrimestre">
-      <i class="fas fa-calendar-alt"></i>
-      Seleccionar cuatrimestre
-    </label>
-    <select id="cuatrimestre" name="cuatrimestre">
-      {% for codigo, etiqueta in cuatrimestres %}
-      <option value="{{ codigo }}" {% if codigo == cuatrimestre %}selected{% endif %}>{{ etiqueta }}</option>
-      {% endfor %}
-    </select>
-    <button type="submit" class="btn btn-primary">
-      <i class="fas fa-filter"></i>
-      Aplicar
-    </button>
-  </form>
-</section>
 <section class="attendance-grid">
   <div class="card form-card">
     <header class="card__header">

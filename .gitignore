@@ -2,4 +2,6 @@ README.pdf
 cosas.md
 READMEBackup.md
 
-/.venv
+# Entornos virtuales locales (Windows / Linux / macOS)
+.venv/
+venv/

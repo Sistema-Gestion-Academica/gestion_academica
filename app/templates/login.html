@@ -3,7 +3,10 @@
 {% block auth_content %}
 <section class="auth-card fade-in">
   <div class="auth-card__logo">
-    <img src="{{ url_for('static', path='/img/Universidad_belgrano_logo23.png') }}" alt="Universidad de Belgrano" />
+    <img
+      src="{{ url_for('static', path='img/Universidad_belgrano_logo23.png') | replace('http://', '//') }}"
+      alt="Universidad de Belgrano"
+    />
   </div>
   <div class="auth-card__header">
     <div>

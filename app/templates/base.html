@@ -4,7 +4,12 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{% block title %}Gestion Academica{% endblock %}</title>
-    <link rel="icon" type="image/webp" sizes="32x68" href="{{ url_for('static', path='/img/LogoBlancoTransparente.webp') }}" />
+    <link
+      rel="icon"
+      type="image/webp"
+      sizes="32x68"
+      href="{{ url_for('static', path='img/LogoBlancoTransparente.webp') | replace('http://', '//') }}"
+    />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -12,7 +17,7 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="{{ url_for('static', path='/styles.css') }}" />
+    <link rel="stylesheet" href="{{ url_for('static', path='styles.css') | replace('http://', '//') }}" />
   </head>
   <body class="{% if is_auth_page %}auth-layout{% else %}app-layout{% endif %}">
     {% if is_auth_page %}
@@ -38,7 +43,7 @@
       </button>
       <div class="navbar__brand">
         <img
-          src="{{ url_for('static', path='/img/Universidad_belgrano_logo23.png') }}"
+          src="{{ url_for('static', path='img/Universidad_belgrano_logo23.png') | replace('http://', '//') }}"
           alt="Universidad de Belgrano"
           class="navbar__brand-logo"
         />
@@ -46,7 +51,7 @@
       </div>
       <div class="navbar__emblem">
         <img
-          src="{{ url_for('static', path='/img/Logo_Univ_Belgrano_positivo_color.jpg') }}"
+          src="{{ url_for('static', path='img/Logo_Univ_Belgrano_positivo_color.jpg') | replace('http://', '//') }}"
           alt="Universidad de Belgrano"
         />
       </div>

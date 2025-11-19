@@ -12,5 +12,12 @@
     "fecha": "2025-10-12",
     "presente": true,
     "rol": "docente"
+  },
+  {
+    "id": "f0b37f5d-2021-4ce3-bf94-3f6b02af9d8b",
+    "usuario_id": "1a69749e-8c73-4376-8216-f5e419e1c70b",
+    "fecha": "2025-11-19",
+    "presente": true,
+    "rol": "alumno"
   }
 ]

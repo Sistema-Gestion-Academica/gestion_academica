@@ -2,24 +2,59 @@
   <header class="card__header card__header--compact">
     <div>
       <h3>Registros de asistencia</h3>
-      <p>
-        Resumen
-        {% if cuatrimestre_label %}
-        del {{ cuatrimestre_label }}
-        {% else %}
-        del periodo completo
-        {% endif %}
-        ({{ resumen.total | int }} dias habiles esperados).
-      </p>
+      <p>Resumen de {{ mes_label }} ({{ resumen.total | int }} dias habiles esperados hasta hoy).</p>
     </div>
-    <div class="progress">
-      {% set porcentaje = resumen.porcentaje or 0 %}
-      <span>{{ porcentaje }}%</span>
-      <div class="progress__bar">
-        <span style="width: {{ porcentaje }}%"></span>
+    <form method="get" action="{{ request.url.path }}" class="month-selector">
+      <label for="mes">
+        <i class="fas fa-calendar-alt"></i>
+        Mes
+      </label>
+      <div class="month-selector__controls">
+        <input type="month" id="mes" name="mes" value="{{ mes }}">
+        <button type="submit" class="btn btn-primary btn-sm">
+          <i class="fas fa-filter"></i>
+          Ver
+        </button>
       </div>
-    </div>
+    </form>
   </header>
+
+  <div class="calendar">
+    <div class="calendar__weekdays">
+      <span>Lu</span>
+      <span>Ma</span>
+      <span>Mi</span>
+      <span>Ju</span>
+      <span>Vi</span>
+      <span>Sa</span>
+      <span>Do</span>
+    </div>
+    <div class="calendar__grid">
+      {% for day in calendar_days %}
+      <div
+        class="
+          calendar__day
+          {% if not day.is_current_month %}calendar__day--muted{% endif %}
+          {% if day.is_present %}calendar__day--present{% endif %}
+          {% if day.is_today %}calendar__day--today{% endif %}
+        "
+      >
+        {% if day.label %}
+        <span class="calendar__day-number">{{ day.label }}</span>
+        {% if day.is_present %}
+        <span class="calendar__badge"><i class="fas fa-check"></i></span>
+        {% endif %}
+        {% endif %}
+      </div>
+      {% endfor %}
+    </div>
+    <div class="calendar__legend">
+      <span><span class="legend-dot legend-dot--present"></span> Asistencia registrada</span>
+      <span><span class="legend-dot legend-dot--today"></span> Hoy</span>
+      <span><span class="legend-dot legend-dot--muted"></span> Fuera del mes</span>
+    </div>
+  </div>
+
   <div class="table-responsive">
     <table class="table table--striped">
       <thead>
@@ -42,14 +77,14 @@
         </tr>
         {% else %}
         <tr>
-          <td colspan="2">Sin registros de asistencia todavia.</td>
+          <td colspan="2">Sin registros de asistencia para este mes.</td>
         </tr>
         {% endfor %}
       </tbody>
     </table>
   </div>
   <div class="card__footer stats">
-    <span><i class="fas fa-calendar-day"></i> Total: {{ resumen.total | int }}</span>
+    <span><i class="fas fa-calendar-day"></i> Dias habiles: {{ resumen.total | int }}</span>
     <span><i class="fas fa-person-booth"></i> Presentes: {{ resumen.presentes | int }}</span>
     <span><i class="fas fa-percent"></i> Porcentaje: {{ resumen.porcentaje }}%</span>
   </div>
