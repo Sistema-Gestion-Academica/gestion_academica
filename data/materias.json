@@ -49,5 +49,123 @@
     "correlativas": [
       "92c337ac-b1c2-49bd-88bc-56a7dea5526b"
     ]
+  },
+  {
+    "id": "a1d2c3b4-9f10-4a11-8b12-1c2d3e4f5a61",
+    "nombre": "Biologia Humana",
+    "codigo": "NUT101",
+    "descripcion": "Bases de anatomia y fisiologia para nutricion"
+  },
+  {
+    "id": "b2c3d4e5-1a2b-43c4-9d5e-6f7a8b9c0d1e",
+    "nombre": "Bioquimica Basica",
+    "codigo": "NUT201",
+    "descripcion": "Metabolismo y bioenergetica aplicados"
+  },
+  {
+    "id": "c3d4e5f6-2b3c-44d5-9e6f-7a8b9c0d1e2f",
+    "nombre": "Fisiologia",
+    "codigo": "NUT202",
+    "descripcion": "Funcionamiento de organos y sistemas",
+    "correlativas": [
+      "a1d2c3b4-9f10-4a11-8b12-1c2d3e4f5a61"
+    ]
+  },
+  {
+    "id": "d4e5f6a7-3c4d-45e6-9f7a-8b9c0d1e2f3a",
+    "nombre": "Nutricion Clinica",
+    "codigo": "NUT301",
+    "descripcion": "Intervenciones nutricionales por patologia",
+    "correlativas": [
+      "c3d4e5f6-2b3c-44d5-9e6f-7a8b9c0d1e2f",
+      "b2c3d4e5-1a2b-43c4-9d5e-6f7a8b9c0d1e"
+    ]
+  },
+  {
+    "id": "e5f6a7b8-4d5e-46f7-9a8b-9c0d1e2f3a4b",
+    "nombre": "Dietoterapia",
+    "codigo": "NUT302",
+    "descripcion": "Planificacion dietoterapeutica para clinica",
+    "correlativas": [
+      "d4e5f6a7-3c4d-45e6-9f7a-8b9c0d1e2f3a"
+    ]
+  },
+  {
+    "id": "f6a7b8c9-5e6f-47a8-9b0c-0d1e2f3a4b5c",
+    "nombre": "Dibujo Arquitectonico I",
+    "codigo": "ARQ101",
+    "descripcion": "Tecnicas de representacion y croquis"
+  },
+  {
+    "id": "0a1b2c3d-6f70-48b9-9c0d-1e2f3a4b5c6d",
+    "nombre": "Historia de la Arquitectura",
+    "codigo": "ARQ102",
+    "descripcion": "Corrientes historicas y referentes"
+  },
+  {
+    "id": "1b2c3d4e-7081-49ca-9d1e-2f3a4b5c6d7e",
+    "nombre": "Materiales y Construccion",
+    "codigo": "ARQ201",
+    "descripcion": "Propiedades de materiales y sistemas constructivos",
+    "correlativas": [
+      "f6a7b8c9-5e6f-47a8-9b0c-0d1e2f3a4b5c"
+    ]
+  },
+  {
+    "id": "2c3d4e5f-8192-4adb-9e2f-3a4b5c6d7e8f",
+    "nombre": "Estructuras I",
+    "codigo": "ARQ202",
+    "descripcion": "Estatica y esfuerzos basicos",
+    "correlativas": [
+      "1b2c3d4e-7081-49ca-9d1e-2f3a4b5c6d7e"
+    ]
+  },
+  {
+    "id": "3d4e5f6a-92a3-4bec-9f3a-4b5c6d7e8f90",
+    "nombre": "Diseno Arquitectonico",
+    "codigo": "ARQ301",
+    "descripcion": "Proyecto arquitectonico integral",
+    "correlativas": [
+      "f6a7b8c9-5e6f-47a8-9b0c-0d1e2f3a4b5c",
+      "0a1b2c3d-6f70-48b9-9c0d-1e2f3a4b5c6d"
+    ]
+  },
+  {
+    "id": "4e5f6a7b-a3b4-4cfd-904b-5c6d7e8f9011",
+    "nombre": "Microeconomia I",
+    "codigo": "ECO101",
+    "descripcion": "Oferta, demanda y equilibrio"
+  },
+  {
+    "id": "5f6a7b8c-b4c5-4d0e-915c-6d7e8f901122",
+    "nombre": "Macroeconomia I",
+    "codigo": "ECO102",
+    "descripcion": "Cuentas nacionales y politicas fiscales"
+  },
+  {
+    "id": "6a7b8c9d-c5d6-4e1f-926d-7e8f90112233",
+    "nombre": "Estadistica Aplicada",
+    "codigo": "ECO201",
+    "descripcion": "Inferencia, regresion y series de tiempo"
+  },
+  {
+    "id": "7b8c9d0e-d6e7-4f20-937e-8f9011223344",
+    "nombre": "Econometria",
+    "codigo": "ECO301",
+    "descripcion": "Modelos econometricos y validacion",
+    "correlativas": [
+      "4e5f6a7b-a3b4-4cfd-904b-5c6d7e8f9011",
+      "6a7b8c9d-c5d6-4e1f-926d-7e8f90112233"
+    ]
+  },
+  {
+    "id": "8c9d0e1f-e7f8-4031-948f-901122334455",
+    "nombre": "Finanzas Corporativas",
+    "codigo": "ECO302",
+    "descripcion": "Decision financiera y valoracion",
+    "correlativas": [
+      "4e5f6a7b-a3b4-4cfd-904b-5c6d7e8f9011",
+      "6a7b8c9d-c5d6-4e1f-926d-7e8f90112233"
+    ]
   }
 ]

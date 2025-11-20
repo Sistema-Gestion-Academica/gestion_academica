@@ -33,6 +33,12 @@
     </div>
   </form>
 </section>
+{% if toast_success %}
+<div class="toast toast--success" id="toastSuccess">
+  <i class="fas fa-circle-check"></i>
+  <span>{{ toast_success }}</span>
+</div>
+{% endif %}
 {% if examenes_detalle %}
 <section class="card info-card">
   <h3>Detalle de examenes disponibles</h3>
@@ -89,4 +95,21 @@
   <p class="empty-state">Todavia no te inscribiste a ningun examen.</p>
   {% endif %}
 </section>
+{% endblock %}
+
+{% block scripts %}
+{{ super() }}
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const toast = document.getElementById("toastSuccess");
+    if (toast) {
+      setTimeout(() => {
+        toast.classList.add("toast--hide");
+      }, 2500);
+      setTimeout(() => {
+        toast.remove();
+      }, 3200);
+    }
+  });
+</script>
 {% endblock %}

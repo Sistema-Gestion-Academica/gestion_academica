@@ -5,3 +5,6 @@ READMEBackup.md
 # Entornos virtuales locales (Windows / Linux / macOS)
 .venv/
 venv/
+
+__pycache__/
+*.pyc

@@ -350,8 +350,12 @@ async def crear_curso_action(
 async def examenes_view(request: Request) -> HTMLResponse:
     admin = _require_admin(request)
     templates = request.app.state.templates
-    materias = service.listarMaterias()
-    cursos = service.listarCursos()
+    planes = service.listarPlanes()
+    plan_id = request.query_params.get("plan_id") if planes else None
+    if plan_id not in {p.id for p in planes if p.id}:
+        plan_id = planes[0].id if planes and planes[0].id else None
+    materias = service.obtenerMateriasDePlan(plan_id) if plan_id else []
+    cursos = [curso for curso in service.listarCursos() if not materias or curso.materia_id in {m.id for m in materias}]
     examenes = service.listarExamenes()
     alumnos = service.listarAlumnos()
     materia_map = {materia.id: materia for materia in materias if materia.id}
@@ -390,6 +394,8 @@ async def examenes_view(request: Request) -> HTMLResponse:
             "usuario": admin,
             "nav_items": menu_for_role(admin.rol),
             "page_title": "Gestion de examenes",
+            "planes": planes,
+            "plan_id": plan_id,
             "materias": materias,
             "cursos": cursos,
             "examenes_detalle": examenes_detalle,
@@ -407,16 +413,23 @@ async def crear_examen_action(
     materia_id: str = Form(...),
     curso_id: str = Form(""),
     correlativas: List[str] = Form(default=[]),
+    plan_id: str = Form(...),
 ) -> RedirectResponse:
     _require_admin(request)
     url = request.url_for("examenes_view")
     try:
+        if plan_id not in {plan.id for plan in service.listarPlanes() if plan.id}:
+            raise ValueError("Plan invalido")
+        materias_plan = {m.id for m in service.obtenerMateriasDePlan(plan_id)}
+        if materia_id not in materias_plan:
+            raise ValueError("La materia no pertenece al plan seleccionado")
+        correlativas_limpias = [cid for cid in (correlativas or []) if cid in materias_plan]
         service.crearExamen(
             nombre=nombre,
             materia_id=materia_id,
             fecha=fecha,
             curso_id=curso_id or None,
-            correlativas=correlativas or None,
+            correlativas=correlativas_limpias or None,
         )
     except ValueError as exc:
         return RedirectResponse(

@@ -12,5 +12,19 @@
     "materia_id": "7a607337-eb58-4c2b-a44e-b4ffca8caa7d",
     "cohorte_id": "32017e88-01f5-4fa2-9591-2620db0d4498",
     "docente_id": "40f1affe-c7fa-4ddc-bdae-83ee4541d1c9"
+  },
+  {
+    "id": "43c15ee0-ff37-4d20-acf5-de1112fe2af2",
+    "nombre": "Bioquimica - 2do Cuatri 2025",
+    "materia_id": "b2c3d4e5-1a2b-43c4-9d5e-6f7a8b9c0d1e",
+    "cohorte_id": "175697ae-ee9e-4398-9162-3c0f9c1a3867",
+    "docente_id": "40f1affe-c7fa-4ddc-bdae-83ee4541d1c9"
+  },
+  {
+    "id": "094eca2d-5469-4b94-aa1e-d63a8d7d9271",
+    "nombre": "Fisiologia - 1er Cuatri 2025",
+    "materia_id": "f4577219-8ebb-45c6-a850-6790fe8e3333",
+    "cohorte_id": "175697ae-ee9e-4398-9162-3c0f9c1a3867",
+    "docente_id": "40f1affe-c7fa-4ddc-bdae-83ee4541d1c9"
   }
 ]

@@ -74,7 +74,12 @@ async def inscribirse_materia_action(
 async def inscribirse_examen_view(request: Request) -> HTMLResponse:
     alumno = _require_alumno(request)
     templates = request.app.state.templates
-    examenes = service.listarExamenes()
+    plan = service.obtenerPlanDelAlumno(alumno)
+    info = None
+    examenes = service.listarExamenes() if plan else []
+    if not plan:
+        info = "Aun no tenes un plan asignado; contacta al administrador."
+    plan_materias = set(plan.materias) if plan else set()
     materias = {
         materia.id: materia
         for materia in service.listarMaterias()
@@ -89,6 +94,8 @@ async def inscribirse_examen_view(request: Request) -> HTMLResponse:
     examenes_detalle = []
     examenes_inscriptos = []
     for examen in examenes:
+        if plan_materias and examen.materia_id not in plan_materias:
+            continue
         materia = materias.get(examen.materia_id)
         correlativas = [
             materias[correlativa_id].nombre
@@ -123,6 +130,8 @@ async def inscribirse_examen_view(request: Request) -> HTMLResponse:
             "examenes_inscriptos": examenes_inscriptos,
             "nav_items": menu_for_role(alumno.rol),
             "page_title": "Inscripcion a examenes",
+            "info": info,
+            "toast_success": request.query_params.get("success"),
         },
     )
 
@@ -135,7 +144,7 @@ async def inscribirse_examen_action(
     alumno = _require_alumno(request)
     service.inscribirseExamen(alumno, examen_id)
     return RedirectResponse(
-        request.url_for("dashboard"),
+        f"{request.url_for('inscribirse_examen_view')}?success=Inscripcion+realizada+correctamente",
         status_code=status.HTTP_303_SEE_OTHER,
     )
 

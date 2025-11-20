@@ -64,5 +64,20 @@
     "examenesInscripto": [],
     "plan_id": null,
     "cohorte_id": null
+  },
+  {
+    "id": "5802d6c8-5394-4ca7-8e37-ac3935bc8300",
+    "nombre": "Lucas aguero",
+    "email": "lucas.aguero@comunidad.ub.edu.ar",
+    "password": "1234",
+    "rol": "alumno",
+    "sesion_activa": false,
+    "type": "Alumno",
+    "materiasInscripto": [],
+    "examenesInscripto": [
+      "3054cf37-526b-4e33-9696-40d6094e4f79"
+    ],
+    "plan_id": "f4a9bdd8-57d5-4352-9665-a81580977e45",
+    "cohorte_id": "175697ae-ee9e-4398-9162-3c0f9c1a3867"
   }
 ]

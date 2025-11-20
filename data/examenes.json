@@ -15,5 +15,125 @@
       "fff309e1-2bd3-4c62-9db1-3e243defbc1e"
     ],
     "cupo": null
+  },
+  {
+    "id": "10aa20bb-30cc-40dd-90ee-50ff60aa70bb",
+    "nombre": "Final Biologia Humana",
+    "materia_id": "a1d2c3b4-9f10-4a11-8b12-1c2d3e4f5a61",
+    "fecha": "2025-09-01",
+    "curso_id": null,
+    "correlativas": [],
+    "cupo": 80
+  },
+  {
+    "id": "21bb31cc-41dd-51ee-91ff-61aa71bb82cc",
+    "nombre": "Parcial Nutricion Clinica",
+    "materia_id": "d4e5f6a7-3c4d-45e6-9f7a-8b9c0d1e2f3a",
+    "fecha": "2025-10-10",
+    "curso_id": null,
+    "correlativas": [
+      "c3d4e5f6-2b3c-44d5-9e6f-7a8b9c0d1e2f",
+      "b2c3d4e5-1a2b-43c4-9d5e-6f7a8b9c0d1e"
+    ],
+    "cupo": 70
+  },
+  {
+    "id": "32cc42dd-52ee-62ff-92aa-72bb82cc93dd",
+    "nombre": "Final Dietoterapia",
+    "materia_id": "e5f6a7b8-4d5e-46f7-9a8b-9c0d1e2f3a4b",
+    "fecha": "2025-12-01",
+    "curso_id": null,
+    "correlativas": [
+      "d4e5f6a7-3c4d-45e6-9f7a-8b9c0d1e2f3a"
+    ],
+    "cupo": 60
+  },
+  {
+    "id": "43dd53ee-63ff-7300-93bb-83cc94dd05ee",
+    "nombre": "Parcial Dibujo Arquitectonico I",
+    "materia_id": "f6a7b8c9-5e6f-47a8-9b0c-0d1e2f3a4b5c",
+    "fecha": "2025-08-20",
+    "curso_id": null,
+    "correlativas": [],
+    "cupo": 90
+  },
+  {
+    "id": "54ee64ff-7400-8401-94cc-94dd05ee16ff",
+    "nombre": "Final Estructuras I",
+    "materia_id": "2c3d4e5f-8192-4adb-9e2f-3a4b5c6d7e8f",
+    "fecha": "2025-11-15",
+    "curso_id": null,
+    "correlativas": [
+      "1b2c3d4e-7081-49ca-9d1e-2f3a4b5c6d7e"
+    ],
+    "cupo": 75
+  },
+  {
+    "id": "65ff7500-8511-9512-95dd-a5ee16ff2700",
+    "nombre": "Final Diseno Arquitectonico",
+    "materia_id": "3d4e5f6a-92a3-4bec-9f3a-4b5c6d7e8f90",
+    "fecha": "2025-12-05",
+    "curso_id": null,
+    "correlativas": [
+      "f6a7b8c9-5e6f-47a8-9b0c-0d1e2f3a4b5c",
+      "0a1b2c3d-6f70-48b9-9c0d-1e2f3a4b5c6d"
+    ],
+    "cupo": 80
+  },
+  {
+    "id": "76008611-9622-a623-96ee-b6ff27003811",
+    "nombre": "Parcial Microeconomia I",
+    "materia_id": "4e5f6a7b-a3b4-4cfd-904b-5c6d7e8f9011",
+    "fecha": "2025-08-25",
+    "curso_id": null,
+    "correlativas": [],
+    "cupo": 100
+  },
+  {
+    "id": "87119722-a733-b734-97ff-c70038114922",
+    "nombre": "Final Econometria",
+    "materia_id": "7b8c9d0e-d6e7-4f20-937e-8f9011223344",
+    "fecha": "2025-11-28",
+    "curso_id": null,
+    "correlativas": [
+      "4e5f6a7b-a3b4-4cfd-904b-5c6d7e8f9011",
+      "6a7b8c9d-c5d6-4e1f-926d-7e8f90112233"
+    ],
+    "cupo": 85
+  },
+  {
+    "id": "9822a833-b844-c845-9911-d81149225a33",
+    "nombre": "Final Finanzas Corporativas",
+    "materia_id": "8c9d0e1f-e7f8-4031-948f-901122334455",
+    "fecha": "2025-12-10",
+    "curso_id": null,
+    "correlativas": [
+      "4e5f6a7b-a3b4-4cfd-904b-5c6d7e8f9011",
+      "6a7b8c9d-c5d6-4e1f-926d-7e8f90112233"
+    ],
+    "cupo": 90
+  },
+  {
+    "id": "1ad62876-f842-459c-84db-e95d5ba66937",
+    "nombre": "Final BIoquimica 1er llamad",
+    "materia_id": "b2c3d4e5-1a2b-43c4-9d5e-6f7a8b9c0d1e",
+    "fecha": "2025-12-26",
+    "curso_id": "43c15ee0-ff37-4d20-acf5-de1112fe2af2",
+    "correlativas": [
+      "f4577219-8ebb-45c6-a850-6790fe8e3333",
+      "c3d4e5f6-2b3c-44d5-9e6f-7a8b9c0d1e2f"
+    ],
+    "cupo": null
+  },
+  {
+    "id": "3054cf37-526b-4e33-9696-40d6094e4f79",
+    "nombre": "Final fisiologia - 1er Cuatri 2025",
+    "materia_id": "c3d4e5f6-2b3c-44d5-9e6f-7a8b9c0d1e2f",
+    "fecha": "2025-07-12",
+    "curso_id": "094eca2d-5469-4b94-aa1e-d63a8d7d9271",
+    "correlativas": [
+      "f4577219-8ebb-45c6-a850-6790fe8e3333"
+    ],
+    "cupo": null
   }
 ]

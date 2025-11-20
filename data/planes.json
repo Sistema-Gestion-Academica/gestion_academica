@@ -15,11 +15,49 @@
   },
   {
     "id": "f4a9bdd8-57d5-4352-9665-a81580977e45",
-    "nombre": "Plan Medicina 2025",
+    "nombre": "Plan Medicina",
     "descripcion": "asd",
     "materias": [
       "f4577219-8ebb-45c6-a850-6790fe8e3333",
-      "b420f1c2-1f0e-4606-808e-edf9df54aa35"
+      "b420f1c2-1f0e-4606-808e-edf9df54aa35",
+      "b2c3d4e5-1a2b-43c4-9d5e-6f7a8b9c0d1e",
+      "c3d4e5f6-2b3c-44d5-9e6f-7a8b9c0d1e2f"
+    ]
+  },
+  {
+    "id": "11122233-aaaa-bbbb-cccc-111222333444",
+    "nombre": "Plan Nutricion",
+    "descripcion": "Trayecto profesional en nutricion y dietoterapia",
+    "materias": [
+      "a1d2c3b4-9f10-4a11-8b12-1c2d3e4f5a61",
+      "b2c3d4e5-1a2b-43c4-9d5e-6f7a8b9c0d1e",
+      "c3d4e5f6-2b3c-44d5-9e6f-7a8b9c0d1e2f",
+      "d4e5f6a7-3c4d-45e6-9f7a-8b9c0d1e2f3a",
+      "e5f6a7b8-4d5e-46f7-9a8b-9c0d1e2f3a4b"
+    ]
+  },
+  {
+    "id": "22233344-bbbb-cccc-dddd-222333444555",
+    "nombre": "Plan Arquitectura",
+    "descripcion": "Formacion en diseno y tecnologia arquitectonica",
+    "materias": [
+      "f6a7b8c9-5e6f-47a8-9b0c-0d1e2f3a4b5c",
+      "0a1b2c3d-6f70-48b9-9c0d-1e2f3a4b5c6d",
+      "1b2c3d4e-7081-49ca-9d1e-2f3a4b5c6d7e",
+      "2c3d4e5f-8192-4adb-9e2f-3a4b5c6d7e8f",
+      "3d4e5f6a-92a3-4bec-9f3a-4b5c6d7e8f90"
+    ]
+  },
+  {
+    "id": "33344455-cccc-dddd-eeee-333444555666",
+    "nombre": "Plan Economia",
+    "descripcion": "Enfoque cuantitativo en micro, macro y finanzas",
+    "materias": [
+      "4e5f6a7b-a3b4-4cfd-904b-5c6d7e8f9011",
+      "5f6a7b8c-b4c5-4d0e-915c-6d7e8f901122",
+      "6a7b8c9d-c5d6-4e1f-926d-7e8f90112233",
+      "7b8c9d0e-d6e7-4f20-937e-8f9011223344",
+      "8c9d0e1f-e7f8-4031-948f-901122334455"
     ]
   }
 ]
