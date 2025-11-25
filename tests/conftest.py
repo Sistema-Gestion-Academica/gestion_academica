@@ -13,7 +13,7 @@ from app.utils.mapper import Mapper
 
 @pytest.fixture
 def mapper_tmp_dir(tmp_path, monkeypatch):
-    """Redirects Mapper storage to an isolated temp directory for tests."""
+    """crea un directorio temporal data para la ejecución del test, sobrescribe Mapper._DATA_DIR para que todo se guarde ahí, y reinicia el singleton DBBroker antes y después."""
     data_dir = tmp_path / "data"
     monkeypatch.setattr(Mapper, "_DATA_DIR", data_dir, raising=False)
     DBBroker._instance = None
@@ -23,7 +23,7 @@ def mapper_tmp_dir(tmp_path, monkeypatch):
 
 @pytest.fixture
 def isolated_broker(mapper_tmp_dir):
-    """Provides a fresh DBBroker instance backed by the isolated storage."""
+    """depende de mapper_tmp_dir, instancia un DBBroker que ya usa ese almacenamiento aislado y lo entrega al test."""
     broker = DBBroker()
     yield broker
     DBBroker._instance = None

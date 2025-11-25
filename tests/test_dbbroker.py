@@ -2,8 +2,13 @@ from app.models.USRs import Administrador
 from app.models.materia import Materia
 from app.models.plan import Plan
 
+# Nota: cada test recibe el fixture `isolated_broker`, que crea un DBBroker sobre
+# un directorio temporal (ver conftest.py). Así, los objetos guardados no tocan
+# datos reales y cada prueba empieza limpia.
+
 
 def test_guardar_y_listar_usa_alias_usuario(isolated_broker):
+    # Guarda un administrador y valida que quede accesible como Usuario y como Administrador.
     admin = Administrador(
         id=None,
         nombre="Admin Test",
@@ -23,6 +28,7 @@ def test_guardar_y_listar_usa_alias_usuario(isolated_broker):
 
 
 def test_actualizar_eliminar_y_add_list(isolated_broker):
+    # Actualiza una materia, agrega sus IDs a un plan sin duplicados y luego confirma su eliminación.
     materia = Materia(
         id=None,
         nombre="Algebra",

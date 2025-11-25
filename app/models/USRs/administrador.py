@@ -28,7 +28,7 @@ class Administrador(Usuario):
             id=None,
             nombre=nombre,
             codigo=codigo,
-            descripcion=descripcion,
+            descripcion=descripcion or "",
             correlativas=list(correlativas or []),
         )
 

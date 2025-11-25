@@ -22,13 +22,40 @@ class AdministradorService:
         admin: Administrador,
         nombre: str,
         codigo: str,
-        descripcion: str,
+        descripcion: Optional[str],
         correlativas: Optional[List[str]] = None,
     ) -> Materia:
         correlativas_limpias = [value for value in (correlativas or []) if value]
-        materia = admin.crearMateria(nombre, codigo, descripcion, correlativas_limpias)
+        materia = admin.crearMateria(nombre, codigo, descripcion or "", correlativas_limpias)
         self.broker.guardarObjeto(materia)
         return materia
+
+    def obtenerMateria(self, materia_id: str) -> Materia:
+        data = self.broker.obtenerPorId("Materia", materia_id)
+        if not data:
+            raise ValueError("Materia no encontrada")
+        return Materia.from_dict(data)
+
+    def actualizarMateria(
+        self,
+        materia_id: str,
+        nombre: str,
+        codigo: str,
+        descripcion: Optional[str],
+        correlativas: Optional[List[str]] = None,
+    ) -> Materia:
+        materia = self.obtenerMateria(materia_id)
+        materia.nombre = nombre
+        materia.codigo = codigo
+        materia.descripcion = descripcion or ""
+        materia.correlativas = [value for value in (correlativas or []) if value]
+        self.broker.actualizarObjeto(materia)
+        return materia
+
+    def eliminarMateria(self, materia_id: str) -> None:
+        if not self.broker.obtenerPorId("Materia", materia_id):
+            raise ValueError("Materia no encontrada")
+        self.broker.eliminarObjeto("Materia", materia_id)
 
     def registrarAlumno(self, nombre: str, email: str, password: str) -> Alumno:
         alumno = Alumno(

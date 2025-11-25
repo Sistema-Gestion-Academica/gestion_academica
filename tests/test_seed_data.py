@@ -1,8 +1,12 @@
 from app.main import seed_data
 from app.models.dbbroker import DBBroker
 
+# Estos tests usan el fixture `mapper_tmp_dir` (ver conftest.py) para que el seed escriba
+# datos en un directorio temporal. Así se valida el poblamiento sin tocar archivos reales.
+
 
 def test_seed_data_popula_datos_base(mapper_tmp_dir):
+    # Carga los datos iniciales y verifica que usuarios, materias, planes y exámenes estén completos y relacionados.
     seed_data()
     broker = DBBroker()
 
@@ -23,6 +27,7 @@ def test_seed_data_popula_datos_base(mapper_tmp_dir):
 
 
 def test_seed_data_es_idempotente(mapper_tmp_dir):
+    # Ejecuta seed_data dos veces y confirma que no se generan duplicados ni cambia el conteo de registros.
     seed_data()
     broker = DBBroker()
 

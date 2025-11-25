@@ -58,4 +58,222 @@
     </div>
   </form>
 </section>
+
+<section class="card form-card">
+  <header class="card__header">
+    <div class="card__icon card__icon--gradient">
+      <i class="fas fa-pen-to-square"></i>
+    </div>
+    <div>
+      <h2>Administrar materias</h2>
+      <p>Selecciona una materia existente para editar sus datos o eliminarla.</p>
+    </div>
+  </header>
+  <form method="post" action="{{ url_for('actualizar_materia_action') }}" class="form" data-loading="true">
+    <div class="form-grid">
+      <div class="form-group form-group--full">
+        <label for="materiaSelect"><i class="fas fa-list"></i> Seleccionar materia</label>
+        <select id="materiaSelect" name="materia_id" required>
+          <option value="">Elegir materia...</option>
+          {% for materia in materias %}
+          {% if materia.id %}
+          <option
+            value="{{ materia.id }}"
+            data-nombre="{{ materia.nombre }}"
+            data-codigo="{{ materia.codigo }}"
+            data-descripcion="{{ materia.descripcion }}"
+            data-correlativas="{{ materia.correlativas | join(',') }}"
+          >
+            {{ materia.nombre }} ({{ materia.codigo }})
+          </option>
+          {% endif %}
+          {% endfor %}
+        </select>
+      </div>
+    </div>
+    <div id="materiaEditContainer">
+      <div class="form-grid plan-detail" id="materiaEditGrid">
+        <div class="form-group">
+          <label for="editNombre"><i class="fas fa-heading"></i> Nombre</label>
+          <input
+            id="editNombre"
+            type="text"
+            name="nombre"
+            placeholder="Ej. Algoritmos II"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label for="editCodigo"><i class="fas fa-barcode"></i> Codigo</label>
+          <input
+            id="editCodigo"
+            type="text"
+            name="codigo"
+            placeholder="Ej. ALG201"
+            required
+          />
+        </div>
+        <div class="form-group form-group--full">
+          <label for="editDescripcion"><i class="fas fa-align-left"></i> Descripcion</label>
+          <textarea
+            id="editDescripcion"
+            name="descripcion"
+            rows="3"
+            placeholder="Resumen de contenidos, objetivos y carga horaria"
+          ></textarea>
+        </div>
+        <div class="form-group form-group--full">
+          <span><i class="fas fa-route"></i> Correlativas</span>
+          <p class="form-hint">Marca las materias que se deben aprobar previamente.</p>
+          <div class="checkbox-grid" id="correlativasEditar">
+            {% for materia in materias %}
+            {% if materia.id %}
+            <label class="checkbox-item">
+              <input type="checkbox" name="correlativas" value="{{ materia.id }}" />
+              <span class="checkbox-item__content">
+                <strong>{{ materia.nombre }}</strong>
+                <small>{{ materia.codigo }}</small>
+              </span>
+            </label>
+            {% endif %}
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+      <div class="form-actions" id="accionesMateria">
+        <button type="submit" class="btn btn-primary" id="guardarCambios">
+          <i class="fas fa-floppy-disk"></i>
+          Guardar cambios
+        </button>
+      </div>
+    </div>
+  </form>
+  <form
+    id="eliminarMateriaForm"
+    method="post"
+    action="{{ url_for('eliminar_materia_action') }}"
+    class="form-actions"
+  >
+    <input type="hidden" name="materia_id" id="materiaEliminarId" />
+    <button type="submit" class="btn btn-danger" id="eliminarMateria" disabled formnovalidate>
+      <i class="fas fa-trash"></i>
+      Borrar materia
+    </button>
+  </form>
+</section>
+{% if success %}
+<div class="toast toast--success" id="toastSuccess">
+  <i class="fas fa-circle-check"></i>
+  <span>{{ success }}</span>
+</div>
+{% endif %}
+{% endblock %}
+{% block scripts %}
+{{ super() }}
+  document.addEventListener("DOMContentLoaded", () => {
+    const select = document.getElementById("materiaSelect");
+    const editorContainer = document.getElementById("materiaEditContainer");
+    const acciones = document.getElementById("accionesMateria");
+    const eliminarForm = document.getElementById("eliminarMateriaForm");
+    const nombreInput = document.getElementById("editNombre");
+    const codigoInput = document.getElementById("editCodigo");
+    const descripcionInput = document.getElementById("editDescripcion");
+    const correlativaCheckboxes = Array.from(
+      document.querySelectorAll("#correlativasEditar input[type='checkbox']")
+    );
+    const guardarBtn = document.getElementById("guardarCambios");
+    const eliminarBtn = document.getElementById("eliminarMateria");
+    const eliminarIdInput = document.getElementById("materiaEliminarId");
+    const toast = document.getElementById("toastSuccess");
+
+    const populateFromOption = (option) => {
+      if (!option || !option.value) {
+        nombreInput.value = "";
+        codigoInput.value = "";
+        descripcionInput.value = "";
+        correlativaCheckboxes.forEach((checkbox) => {
+          checkbox.checked = false;
+          checkbox.disabled = false;
+        });
+        if (eliminarIdInput) eliminarIdInput.value = "";
+        if (guardarBtn) guardarBtn.disabled = true;
+        if (eliminarBtn) eliminarBtn.disabled = true;
+        if (editorContainer) editorContainer.style.display = "block";
+        if (acciones) acciones.style.display = "block";
+        if (eliminarForm) eliminarForm.style.display = "block";
+        return;
+      }
+      nombreInput.value = option.dataset.nombre || "";
+      codigoInput.value = option.dataset.codigo || "";
+      descripcionInput.value = option.dataset.descripcion || "";
+      const correlativas = (option.dataset.correlativas || "")
+        .split(",")
+        .filter(Boolean);
+      correlativaCheckboxes.forEach((checkbox) => {
+        checkbox.checked = correlativas.includes(checkbox.value);
+        checkbox.disabled = checkbox.value === option.value;
+      });
+      if (eliminarIdInput) eliminarIdInput.value = option.value;
+      if (guardarBtn) guardarBtn.disabled = false;
+      if (eliminarBtn) eliminarBtn.disabled = false;
+      if (editorContainer) editorContainer.style.display = "block";
+      if (acciones) acciones.style.display = "block";
+      if (eliminarForm) eliminarForm.style.display = "block";
+    };
+
+    const ensureSelection = () => {
+      const option = select?.selectedOptions[0];
+      if (!option || !option.value) {
+        alert("Selecciona una materia primero.");
+        return null;
+      }
+      return option;
+    };
+
+    if (select) {
+      select.addEventListener("change", () => {
+        populateFromOption(select.selectedOptions[0]);
+        nombreInput?.focus();
+      });
+      if (!select.value) {
+        const firstValid = Array.from(select.options).find((option) => option.value);
+        if (firstValid) {
+          firstValid.selected = true;
+        }
+      }
+      populateFromOption(select.selectedOptions[0]);
+    } else {
+      populateFromOption(null);
+    }
+
+    if (eliminarBtn && eliminarIdInput && select) {
+      const syncDeleteButton = () => {
+        const option = select.selectedOptions[0];
+        const hasValue = !!(option && option.value);
+        eliminarBtn.disabled = !hasValue;
+        eliminarIdInput.value = hasValue ? option.value : "";
+      };
+      select.addEventListener("change", syncDeleteButton);
+      syncDeleteButton();
+    }
+
+    if (guardarBtn && select) {
+      guardarBtn.addEventListener("click", (event) => {
+        const option = select.selectedOptions[0];
+        if (!option || !option.value) {
+          event.preventDefault();
+          alert("Selecciona una materia antes de guardar cambios.");
+        }
+      });
+    }
+
+    if (toast) {
+      setTimeout(() => {
+        toast.classList.add("toast--hide");
+      }, 2500);
+      setTimeout(() => {
+        toast.remove();
+      }, 3200);
+    }
+  });
 {% endblock %}

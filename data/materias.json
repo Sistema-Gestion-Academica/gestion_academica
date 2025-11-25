@@ -1,15 +1,21 @@
 [
   {
     "id": "92c337ac-b1c2-49bd-88bc-56a7dea5526b",
-    "nombre": "Algoritmos",
+    "nombre": "Algoritmos I",
     "codigo": "ALG101",
-    "descripcion": "Introducción a la Programación"
+    "descripcion": "",
+    "correlativas": [
+      "fff309e1-2bd3-4c62-9db1-3e243defbc1e"
+    ]
   },
   {
     "id": "b420f1c2-1f0e-4606-808e-edf9df54aa35",
-    "nombre": "Bases de Datos",
+    "nombre": "Bases de datos I",
     "codigo": "BD201",
-    "descripcion": "Fundamentos de Bases de Datos"
+    "descripcion": ".",
+    "correlativas": [
+      "fff309e1-2bd3-4c62-9db1-3e243defbc1e"
+    ]
   },
   {
     "id": "f4577219-8ebb-45c6-a850-6790fe8e3333",
@@ -37,17 +43,11 @@
   },
   {
     "id": "7a607337-eb58-4c2b-a44e-b4ffca8caa7d",
-    "nombre": "algebra 2",
-    "codigo": "ALG02",
-    "descripcion": "asd"
-  },
-  {
-    "id": "f2cea8dd-9842-4e63-ac74-144b9112e15d",
-    "nombre": "Algoritmos 2 ",
+    "nombre": "Algebra 2",
     "codigo": "ALG201",
-    "descripcion": "",
+    "descripcion": "-",
     "correlativas": [
-      "92c337ac-b1c2-49bd-88bc-56a7dea5526b"
+      "7a607337-eb58-4c2b-a44e-b4ffca8caa7d"
     ]
   },
   {
@@ -166,6 +166,16 @@
     "correlativas": [
       "4e5f6a7b-a3b4-4cfd-904b-5c6d7e8f9011",
       "6a7b8c9d-c5d6-4e1f-926d-7e8f90112233"
+    ]
+  },
+  {
+    "id": "8b1b5842-2343-49b0-9113-b5c7c1db49c1",
+    "nombre": "Analisis Matematico II",
+    "codigo": "ANMAT02",
+    "descripcion": "",
+    "correlativas": [
+      "fff309e1-2bd3-4c62-9db1-3e243defbc1e",
+      "74dad036-5d90-4b98-af98-9b65401247db"
     ]
   }
 ]

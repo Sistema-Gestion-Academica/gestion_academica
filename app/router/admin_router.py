@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import List
+from typing import List, Optional
 from urllib.parse import quote
 
 from fastapi import APIRouter, Form, HTTPException, Request, status
@@ -64,6 +64,8 @@ async def crear_materia_view(request: Request) -> HTMLResponse:
     admin = _require_admin(request)
     templates = request.app.state.templates
     materias = service.listarMaterias()
+    materia_success = request.query_params.get("materia_success")
+    materia_error = request.query_params.get("materia_error")
     return templates.TemplateResponse(
         "admin/crear_materia.html",
         {
@@ -72,6 +74,8 @@ async def crear_materia_view(request: Request) -> HTMLResponse:
             "nav_items": menu_for_role(admin.rol),
             "page_title": "Crear materia",
             "materias": materias,
+            "success": materia_success,
+            "error": materia_error,
         },
     )
 
@@ -88,6 +92,50 @@ async def crear_materia_action(
     service.crearMateria(admin, nombre, codigo, descripcion, correlativas or None)
     return RedirectResponse(
         request.url_for("dashboard"),
+        status_code=status.HTTP_303_SEE_OTHER,
+    )
+
+
+@router.post("/materia/actualizar")
+async def actualizar_materia_action(
+    request: Request,
+    materia_id: str = Form(...),
+    nombre: str = Form(...),
+    codigo: str = Form(...),
+    descripcion: Optional[str] = Form(default=""),
+    correlativas: List[str] = Form(default=[]),
+) -> RedirectResponse:
+    _require_admin(request)
+    url = request.url_for("crear_materia_view")
+    try:
+        service.actualizarMateria(materia_id, nombre, codigo, descripcion, correlativas or None)
+    except ValueError as exc:
+        return RedirectResponse(
+            f"{url}?materia_error={quote(str(exc))}",
+            status_code=status.HTTP_303_SEE_OTHER,
+        )
+    return RedirectResponse(
+        f"{url}?materia_success={quote('Materia actualizada correctamente')}",
+        status_code=status.HTTP_303_SEE_OTHER,
+    )
+
+
+@router.post("/materia/eliminar")
+async def eliminar_materia_action(
+    request: Request,
+    materia_id: str = Form(...),
+) -> RedirectResponse:
+    _require_admin(request)
+    url = request.url_for("crear_materia_view")
+    try:
+        service.eliminarMateria(materia_id)
+    except ValueError as exc:
+        return RedirectResponse(
+            f"{url}?materia_error={quote(str(exc))}",
+            status_code=status.HTTP_303_SEE_OTHER,
+        )
+    return RedirectResponse(
+        f"{url}?materia_success={quote('Materia eliminada correctamente')}",
         status_code=status.HTTP_303_SEE_OTHER,
     )
 
@@ -132,7 +180,7 @@ async def crear_plan_view(request: Request) -> HTMLResponse:
 async def crear_plan_action(
     request: Request,
     nombre: str = Form(...),
-    descripcion: str = Form(""),
+    descripcion: Optional[str] = Form(default=""),
 ) -> RedirectResponse:
     admin = _require_admin(request)
     service.crearPlan(admin, nombre, descripcion)
